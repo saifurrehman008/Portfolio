@@ -6,9 +6,6 @@
 // Page load animation
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Deploy apps-script/Code.gs as a web app, then paste its /exec URL here.
-    const GOOGLE_FORM_RELAY_URL = "https://script.google.com/macros/s/AKfycbyYedC9P7rLRTc6QsCphSJK_Ny74_hRFGoATTwfDTPoc25_wN752nEHrYuCFGECCaTi/exec";
-
     // Elements that we want to animate
     const elements = document.querySelectorAll(
         "section, .service-card, .portfolio-card"
@@ -57,39 +54,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const contactForm = document.getElementById("contactForm");
     const formStatus = document.getElementById("contactFormStatus");
-    const responseFrame = document.querySelector('iframe[name="googleFormResponse"]');
-    const submitButton = contactForm?.querySelector('button[type="submit"]');
 
-    if (contactForm && formStatus && responseFrame && submitButton) {
+    if (contactForm && formStatus) {
         contactForm.addEventListener("submit", (event) => {
             event.preventDefault();
 
-            if (!GOOGLE_FORM_RELAY_URL.startsWith("https://script.google.com/macros/s/") || !GOOGLE_FORM_RELAY_URL.endsWith("/exec")) {
-                formStatus.textContent = "The form needs its Google Apps Script deployment URL before it can send messages.";
-                formStatus.classList.remove("text-green-400");
-                formStatus.classList.add("text-red-400");
-                formStatus.hidden = false;
-                return;
-            }
+            const values = new FormData(contactForm);
+            const subject = String(values.get("subject") || "Portfolio inquiry");
+            const body = [
+                `Name: ${values.get("name")}`,
+                `Email: ${values.get("email")}`,
+                `Phone: ${values.get("phone")}`,
+                "",
+                String(values.get("message") || "")
+            ].join("\n");
 
-            contactForm.action = GOOGLE_FORM_RELAY_URL;
-            formStatus.textContent = "Sending your message…";
-            formStatus.classList.remove("text-red-400");
-            formStatus.classList.add("text-green-400");
+            formStatus.textContent = "Your email app will open with your message ready to send.";
             formStatus.hidden = false;
-            submitButton.disabled = true;
-            contactForm.submit();
-        });
-
-        window.addEventListener("message", (event) => {
-            if (event.source !== responseFrame.contentWindow || event.data?.type !== "portfolio-form-result") return;
-
-            submitButton.disabled = false;
-            formStatus.textContent = event.data.message;
-            formStatus.classList.toggle("text-green-400", event.data.ok);
-            formStatus.classList.toggle("text-red-400", !event.data.ok);
-
-            if (event.data.ok) contactForm.reset();
+            window.location.href = `mailto:saifiubian2k25@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         });
     }
 
