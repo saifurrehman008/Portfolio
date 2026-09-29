@@ -1,0 +1,478 @@
+/* ================================
+   GLOBAL
+================================ */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* ================================
+   NAVBAR
+================================ */
+
+nav {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+nav a {
+    transition: 0.3s ease;
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+#home {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background glow */
+
+#home::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: rgba(37, 99, 235, 0.12);
+    filter: blur(120px);
+    border-radius: 50%;
+    top: 15%;
+    right: 5%;
+    z-index: 0;
+}
+
+#home > div {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ================================
+   HERO CIRCLE
+================================ */
+
+#home .rounded-full {
+    transition: 0.5s ease;
+}
+
+#home .rounded-full:hover {
+    transform: scale(1.03);
+    box-shadow:
+        0 0 40px rgba(37, 99, 235, 0.25),
+        0 0 100px rgba(37, 99, 235, 0.15);
+}
+
+
+/* ================================
+   SERVICES
+================================ */
+
+.service-card {
+    padding: 35px;
+    min-height: 190px;
+
+    background: rgba(255, 255, 255, 0.03);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 20px;
+
+    transition: all 0.4s ease;
+}
+
+.service-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    color: #9ca3af;
+    line-height: 1.7;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+
+    border-color: rgba(37, 99, 235, 0.7);
+
+    background: rgba(37, 99, 235, 0.08);
+
+    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.12);
+}
+
+
+/* ================================
+   PORTFOLIO
+================================ */
+
+.portfolio-card {
+    overflow: hidden;
+    border-radius: 20px;
+
+    background: #111;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    transition: 0.4s ease;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-8px);
+
+    border-color: rgba(37, 99, 235, 0.7);
+
+    box-shadow: 0 20px 50px rgba(37, 99, 235, 0.15);
+}
+
+.portfolio-placeholder {
+    height: 280px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #777;
+
+    background:
+        linear-gradient(
+            135deg,
+            #050505,
+            #111827
+        );
+
+    transition: 0.4s ease;
+}
+
+.portfolio-card:hover .portfolio-placeholder {
+    color: #3b82f6;
+}
+
+
+/* ================================
+   BUTTONS
+================================ */
+
+a {
+    transition: all 0.3s ease;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+
+    #home h2 {
+        font-size: 3rem;
+    }
+
+    #home .rounded-full {
+        width: 280px;
+        height: 280px;
+    }
+
+}
+/* ========================================
+   SCROLL REVEAL ANIMATION
+======================================== */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   NAVBAR SCROLL EFFECT
+======================================== */
+
+.navbar-scrolled {
+    background: rgba(0, 0, 0, 0.95) !important;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ========================================
+   SMOOTH HOVER
+======================================== */
+
+.service-card,
+.portfolio-card {
+    cursor: pointer;
+}
+
+
+/* ========================================
+   TEXT SELECTION
+======================================== */
+
+::selection {
+    background: #2563eb;
+    color: white;
+}
+/* ========================================
+   PORTFOLIO FILTER BUTTONS
+======================================== */
+
+.filter-btn {
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    color: #9ca3af;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    color: white;
+    border-color: #2563eb;
+    background: rgba(37, 99, 235, 0.12);
+}
+
+.filter-btn.active {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
+
+/* ========================================
+   PORTFOLIO IMAGE CARDS
+======================================== */
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    opacity: 1;
+    transform: scale(1);
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 320px;
+    object-fit: contain;
+    display: block;
+
+    transition: transform 0.5s ease;
+}
+
+
+/* Image hover */
+
+.portfolio-item:hover {
+    transform: translateY(-8px);
+    border-color: rgba(37, 99, 235, 0.7);
+    box-shadow: 0 20px 50px rgba(37, 99, 235, 0.15);
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.05);
+}
+
+
+/* ========================================
+   PORTFOLIO MOBILE
+======================================== */
+
+@media (max-width: 640px) {
+
+    .portfolio-item img {
+        height: 260px;
+    }
+
+    .filter-btn {
+        padding: 8px 15px;
+        font-size: 13px;
+    }
+
+}
+/* ========================================
+   CONTACT SECTION
+======================================== */
+
+.contact-info {
+    padding: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.contact-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: rgba(37, 99, 235, 0.12);
+    border: 1px solid rgba(37, 99, 235, 0.25);
+
+    font-size: 20px;
+}
+
+
+/* Social Links */
+
+.social-link {
+    padding: 9px 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+
+    color: #9ca3af;
+
+    font-size: 14px;
+
+    transition: 0.3s ease;
+}
+
+.social-link:hover {
+    color: white;
+    border-color: #2563eb;
+    background: rgba(37, 99, 235, 0.1);
+}
+
+
+/* ========================================
+   CONTACT FORM
+======================================== */
+
+.contact-form {
+    padding: 35px;
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #d1d5db;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+
+    width: 100%;
+
+    padding: 14px 16px;
+
+    background: #080808;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 12px;
+
+    color: white;
+
+    outline: none;
+
+    transition: 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #6b7280;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+
+/* ========================================
+   SEND BUTTON
+======================================== */
+
+.send-btn {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.send-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+}
