@@ -7,7 +7,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     // Deploy apps-script/Code.gs as a web app, then paste its /exec URL here.
-    const GOOGLE_FORM_RELAY_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+    const GOOGLE_FORM_RELAY_URL = "https://script.google.com/macros/s/AKfycbyYedC9P7rLRTc6QsCphSJK_Ny74_hRFGoATTwfDTPoc25_wN752nEHrYuCFGECCaTi/exec";
 
     // Elements that we want to animate
     const elements = document.querySelectorAll(
