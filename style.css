@@ -49,6 +49,19 @@ nav a {
     z-index: 0;
 }
 
+#home::after {
+    content: "";
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    background: rgba(245, 196, 81, 0.075);
+    filter: blur(120px);
+    border-radius: 50%;
+    left: -130px;
+    bottom: -90px;
+    pointer-events: none;
+}
+
 #home > div {
     position: relative;
     z-index: 1;
@@ -75,7 +88,7 @@ nav a {
 
 .hero-specialties span {
     padding: 8px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(245, 196, 81, 0.2);
     border-radius: 999px;
     color: #cbd5e1;
     background: rgba(255, 255, 255, 0.035);
@@ -98,15 +111,14 @@ nav a {
     z-index: -1;
     inset: 13%;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(37, 99, 235, 0.34), rgba(37, 99, 235, 0) 70%);
-    filter: blur(25px);
-    animation: profileGlow 5s ease-in-out infinite;
+    background: radial-gradient(circle, rgba(245, 196, 81, 0.3), rgba(245, 196, 81, 0) 70%);
+    filter: blur(32px);
 }
 
 .profile-orbit {
     position: absolute;
     inset: 4%;
-    border: 1px solid rgba(96, 165, 250, 0.2);
+    border: 1px solid rgba(245, 196, 81, 0.2);
     border-radius: 50%;
     pointer-events: none;
 }
@@ -114,14 +126,12 @@ nav a {
 .profile-orbit-one {
     transform: rotate(-24deg) scaleX(0.78);
     border-style: dashed;
-    animation: orbitSpin 32s linear infinite;
 }
 
 .profile-orbit-two {
     inset: 0;
     transform: rotate(28deg) scaleX(0.88);
-    border-color: rgba(167, 139, 250, 0.16);
-    animation: orbitSpinReverse 42s linear infinite;
+    border-color: rgba(245, 196, 81, 0.12);
 }
 
 .profile-frame {
@@ -130,12 +140,10 @@ nav a {
     aspect-ratio: 1;
     overflow: hidden;
     padding: 5px;
-    border: 1px solid rgba(147, 197, 253, 0.7);
+    border: 1px solid rgba(255, 224, 153, 0.8);
     border-radius: 50%;
-    background: linear-gradient(145deg, #60a5fa, #1d4ed8 48%, #a78bfa);
-    box-shadow: 0 0 32px rgba(37, 99, 235, 0.35), 0 0 90px rgba(37, 99, 235, 0.17);
-    animation: profileFloat 6s ease-in-out infinite;
-    transition: box-shadow 0.35s ease, border-color 0.35s ease;
+    background: linear-gradient(145deg, #fff1bd, #d6a844 48%, #fff8df);
+    box-shadow: 0 0 28px rgba(245, 196, 81, 0.34), 0 0 86px rgba(245, 196, 81, 0.2);
 }
 
 .profile-photo {
@@ -145,26 +153,14 @@ nav a {
     border-radius: 50%;
     object-fit: cover;
     object-position: 50% 48%;
-    transform: scale(1.12);
-    transition: transform 0.55s cubic-bezier(0.2, 0.75, 0.25, 1), filter 0.55s ease;
-}
-
-.profile-stage:hover .profile-frame {
-    border-color: #bfdbfe;
-    box-shadow: 0 0 42px rgba(59, 130, 246, 0.5), 0 0 110px rgba(37, 99, 235, 0.25);
-    animation-play-state: paused;
-}
-
-.profile-stage:hover .profile-photo {
-    transform: scale(1.2);
-    filter: saturate(1.08) contrast(1.03);
+    transform: scale(1.16);
 }
 
 .profile-chip {
     position: absolute;
     z-index: 2;
     padding: 10px 14px;
-    border: 1px solid rgba(147, 197, 253, 0.24);
+    border: 1px solid rgba(245, 196, 81, 0.3);
     border-radius: 14px;
     color: #e5e7eb;
     background: rgba(10, 15, 28, 0.82);
@@ -173,7 +169,6 @@ nav a {
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.03em;
-    animation: chipFloat 5s ease-in-out infinite;
 }
 
 .profile-chip-top {
@@ -184,7 +179,6 @@ nav a {
 .profile-chip-bottom {
     bottom: 17%;
     left: -1%;
-    animation-delay: -2.4s;
 }
 
 .profile-spark {
@@ -192,8 +186,8 @@ nav a {
     width: 9px;
     height: 9px;
     border-radius: 50%;
-    background: #bfdbfe;
-    box-shadow: 0 0 18px 5px rgba(96, 165, 250, 0.5);
+    background: #ffe7a3;
+    box-shadow: 0 0 18px 5px rgba(245, 196, 81, 0.58);
 }
 
 .profile-spark-one {
@@ -206,46 +200,8 @@ nav a {
     bottom: 23%;
     width: 6px;
     height: 6px;
-    background: #c4b5fd;
-    box-shadow: 0 0 16px 4px rgba(167, 139, 250, 0.45);
-}
-
-@keyframes profileFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-9px); }
-}
-
-@keyframes profileGlow {
-    0%, 100% { opacity: 0.65; transform: scale(0.94); }
-    50% { opacity: 1; transform: scale(1.08); }
-}
-
-@keyframes orbitSpin {
-    to { rotate: 336deg; }
-}
-
-@keyframes orbitSpinReverse {
-    to { rotate: -332deg; }
-}
-
-@keyframes chipFloat {
-    0%, 100% { translate: 0 0; }
-    50% { translate: 0 -6px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .profile-stage::before,
-    .profile-orbit-one,
-    .profile-orbit-two,
-    .profile-frame,
-    .profile-chip {
-        animation: none;
-    }
-
-    .profile-photo,
-    .profile-frame {
-        transition: none;
-    }
+    background: #ffe7a3;
+    box-shadow: 0 0 16px 4px rgba(245, 196, 81, 0.5);
 }
 
 
@@ -439,6 +395,12 @@ a {
    PORTFOLIO IMAGE CARDS
 ======================================== */
 
+#portfolio {
+    background-image:
+        radial-gradient(ellipse 48% 30% at 88% 18%, rgba(245, 196, 81, 0.075), transparent 72%),
+        radial-gradient(ellipse 42% 28% at 6% 76%, rgba(245, 196, 81, 0.045), transparent 74%);
+}
+
 .portfolio-item {
     position: relative;
     overflow: hidden;
@@ -487,8 +449,8 @@ a {
     height: 7px;
     margin: 0 9px 1px 0;
     border-radius: 50%;
-    background: #60a5fa;
-    box-shadow: 0 0 12px rgba(96, 165, 250, 0.8);
+    background: #f5c451;
+    box-shadow: 0 0 12px rgba(245, 196, 81, 0.8);
 }
 
 
@@ -496,8 +458,8 @@ a {
 
 .portfolio-item:hover {
     transform: translateY(-8px);
-    border-color: rgba(37, 99, 235, 0.7);
-    box-shadow: 0 20px 50px rgba(37, 99, 235, 0.15);
+    border-color: rgba(245, 196, 81, 0.65);
+    box-shadow: 0 20px 50px rgba(245, 196, 81, 0.13);
 }
 
 .portfolio-item:hover img {
