@@ -1,5 +1,9 @@
 const GOOGLE_FORM_ID = "1FAIpQLSfxGdUKMT6MYTHRmCaZV7t5FShoq8nzmlgthqkeOiPjK4QJqQ";
 
+function doGet() {
+  return HtmlService.createHtmlOutput("Contact form relay is active. Please send messages through the portfolio contact form.");
+}
+
 function doPost(e) {
   try {
     const values = e && e.parameter ? e.parameter : {};
