@@ -56,18 +56,196 @@ nav a {
 
 
 /* ================================
-   HERO CIRCLE
+   HERO DETAILS
 ================================ */
 
-#home .rounded-full {
-    transition: 0.5s ease;
+#home h2 span {
+    background: linear-gradient(105deg, #60a5fa, #2563eb 58%, #a78bfa);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
-#home .rounded-full:hover {
-    transform: scale(1.03);
-    box-shadow:
-        0 0 40px rgba(37, 99, 235, 0.25),
-        0 0 100px rgba(37, 99, 235, 0.15);
+.hero-specialties {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.hero-specialties span {
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    color: #cbd5e1;
+    background: rgba(255, 255, 255, 0.035);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+}
+
+.profile-stage {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+    width: min(88vw, 440px);
+    aspect-ratio: 1;
+}
+
+.profile-stage::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 13%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.34), rgba(37, 99, 235, 0) 70%);
+    filter: blur(25px);
+    animation: profileGlow 5s ease-in-out infinite;
+}
+
+.profile-orbit {
+    position: absolute;
+    inset: 4%;
+    border: 1px solid rgba(96, 165, 250, 0.2);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.profile-orbit-one {
+    transform: rotate(-24deg) scaleX(0.78);
+    border-style: dashed;
+    animation: orbitSpin 32s linear infinite;
+}
+
+.profile-orbit-two {
+    inset: 0;
+    transform: rotate(28deg) scaleX(0.88);
+    border-color: rgba(167, 139, 250, 0.16);
+    animation: orbitSpinReverse 42s linear infinite;
+}
+
+.profile-frame {
+    position: relative;
+    width: 76%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    padding: 5px;
+    border: 1px solid rgba(147, 197, 253, 0.7);
+    border-radius: 50%;
+    background: linear-gradient(145deg, #60a5fa, #1d4ed8 48%, #a78bfa);
+    box-shadow: 0 0 32px rgba(37, 99, 235, 0.35), 0 0 90px rgba(37, 99, 235, 0.17);
+    animation: profileFloat 6s ease-in-out infinite;
+    transition: box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.profile-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 48%;
+    transform: scale(1.12);
+    transition: transform 0.55s cubic-bezier(0.2, 0.75, 0.25, 1), filter 0.55s ease;
+}
+
+.profile-stage:hover .profile-frame {
+    border-color: #bfdbfe;
+    box-shadow: 0 0 42px rgba(59, 130, 246, 0.5), 0 0 110px rgba(37, 99, 235, 0.25);
+    animation-play-state: paused;
+}
+
+.profile-stage:hover .profile-photo {
+    transform: scale(1.2);
+    filter: saturate(1.08) contrast(1.03);
+}
+
+.profile-chip {
+    position: absolute;
+    z-index: 2;
+    padding: 10px 14px;
+    border: 1px solid rgba(147, 197, 253, 0.24);
+    border-radius: 14px;
+    color: #e5e7eb;
+    background: rgba(10, 15, 28, 0.82);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    animation: chipFloat 5s ease-in-out infinite;
+}
+
+.profile-chip-top {
+    top: 17%;
+    right: -1%;
+}
+
+.profile-chip-bottom {
+    bottom: 17%;
+    left: -1%;
+    animation-delay: -2.4s;
+}
+
+.profile-spark {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #bfdbfe;
+    box-shadow: 0 0 18px 5px rgba(96, 165, 250, 0.5);
+}
+
+.profile-spark-one {
+    top: 17%;
+    left: 22%;
+}
+
+.profile-spark-two {
+    right: 16%;
+    bottom: 23%;
+    width: 6px;
+    height: 6px;
+    background: #c4b5fd;
+    box-shadow: 0 0 16px 4px rgba(167, 139, 250, 0.45);
+}
+
+@keyframes profileFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-9px); }
+}
+
+@keyframes profileGlow {
+    0%, 100% { opacity: 0.65; transform: scale(0.94); }
+    50% { opacity: 1; transform: scale(1.08); }
+}
+
+@keyframes orbitSpin {
+    to { rotate: 336deg; }
+}
+
+@keyframes orbitSpinReverse {
+    to { rotate: -332deg; }
+}
+
+@keyframes chipFloat {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .profile-stage::before,
+    .profile-orbit-one,
+    .profile-orbit-two,
+    .profile-frame,
+    .profile-chip {
+        animation: none;
+    }
+
+    .profile-photo,
+    .profile-frame {
+        transition: none;
+    }
 }
 
 
@@ -179,9 +357,8 @@ a {
         font-size: 3rem;
     }
 
-    #home .rounded-full {
-        width: 280px;
-        height: 280px;
+    .profile-stage {
+        width: min(86vw, 370px);
     }
 
 }
@@ -288,6 +465,32 @@ a {
     transition: transform 0.5s ease;
 }
 
+.portfolio-caption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 28px 18px 16px;
+    color: #f8fafc;
+    background: linear-gradient(transparent, rgba(3, 7, 18, 0.9));
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    opacity: 0.92;
+    transition: opacity 0.25s ease, padding 0.25s ease;
+}
+
+.portfolio-caption::before {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin: 0 9px 1px 0;
+    border-radius: 50%;
+    background: #60a5fa;
+    box-shadow: 0 0 12px rgba(96, 165, 250, 0.8);
+}
+
 
 /* Image hover */
 
@@ -299,6 +502,11 @@ a {
 
 .portfolio-item:hover img {
     transform: scale(1.05);
+}
+
+.portfolio-item:hover .portfolio-caption {
+    padding-bottom: 20px;
+    opacity: 1;
 }
 
 
@@ -317,6 +525,17 @@ a {
         font-size: 13px;
     }
 
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 /* ========================================
    CONTACT SECTION
